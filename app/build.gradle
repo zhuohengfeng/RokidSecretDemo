@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.rokid.rokidsecretdemo"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // ****** NDK编译相关配置 START*********
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+            ndk {
+                abiFilters "armeabi-v7a"
+            }
+        }
+        sourceSets {
+            main {
+                jniLibs.srcDirs = ['src/main/cpp']
+            }
+        }
+        // ****** NDK编译相关配置 END*********
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    // ****** 指定CMake所在路径 *********
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+}
