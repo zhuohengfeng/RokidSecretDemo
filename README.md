@@ -1,4 +1,4 @@
-# Rokid设备生成SecretID Demo
+# Rokid设备生成SecretID
 
 ## 背景
 Rokid设备进行账号绑定，或语音鉴权等操作时都需要生产一个secret id进行网络鉴权。
